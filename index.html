@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Trivia App</title>
+  <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+
+  <div id="user-page" class="hidden">
+    <form id="user-form">
+      <label for="username">Enter your name:</label>
+      <input type="text" id="username" name="username" required>
+      <button type="submit">Join Game</button>
+    </form>
+  </div>
+
+
+  <div id="lobby-page">
+
+    <div class="topics">
+      
+      <h2>Select a Topic</h2>
+      <div id="topics-container">
+        <!-- Topics will be dynamically added here -->
+         
+      </div>
+    </div>
+
+    <div id="difficulty-page" class="">
+      <h2>Select Difficulty Level</h2>
+      <button id="easy-btn" class="difficulty-btn" onclick="setDifficulty('easy')" value="easy">Easy</button>
+      <button id="medium-btn" class="difficulty-btn" onclick="setDifficulty('medium')" value="medium">Medium</button>
+      <button id="hard-btn" class="difficulty-btn" onclick="setDifficulty('hard')" value="hard">Hard</button>
+
+    </div>
+  
+    <div id="question-amount">
+      <h2>Select Number of Questions</h2>
+
+      <input type="range" id="question-range" min="1" max="25" value="10" oninput="setQuestionNumber(this.value)">
+      <span id="question-amount-display">10</span>
+
+    </div>
+
+    <button id="start-quiz-btn" class="start-btn" onclick="startGame()">Start Quiz</button>
+
+  </div>
+
+  <div id="quiz-page" class="hidden">
+
+      <div class="users-holder">
+        <div id="user0" class="user-info">
+          <div id="user0-avatar" class="user-avatar">
+            <img src="./assets/Default_pfp.svg" alt="Player 1 Avatar" width="50px" height="50px">
+          </div>
+          <p id="user0-name" class="user-name">Player 1</p>
+          <p id="user0-score" class="user-score">Score: 0</p>
+        </div>
+        
+       
+      
+
+    </div>
+
+    <p id="connecting-message" class="hidden">
+      Connecting ...
+    </p>
+
+    <div id="question-section" class="hidden">
+      <h1 id="question">Question text will appear here</h1>
+      <div id="bar-holder">
+        <div id="bar"></div>
+      </div>
+    </div>
+
+
+    <div class="choice-list">
+        <button id="answer0" class="choice">Choice 1</button>
+        <button id="answer1" class="choice">Choice 2</button>
+        <button id="answer2" class="choice">Choice 3</button>
+        <button id="answer3" class="choice">Choice 4</button>
+    </div>
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+  <script src="./js/main.js"></script>
+  <script src="./js/animations.js"></script>
+  
+</body>
+</html>
