@@ -1,4 +1,4 @@
-import { test } from './game.js';
+import { GameInit } from './game.js';
 
 var getCategoriesURL = "https://opentdb.com/api_category.php"
 var getQuestionsURLTemplate = `https://opentdb.com/api.php?amount={questionNumber}&category={category}&difficulty={difficulty}&type=multiple`
@@ -67,11 +67,6 @@ function setQuestionNumber(selectedNumber) {
     document.querySelector('#question-amount-display').textContent = questionNumber;
 }
 
-function showQuestion(questionIndex) {
-    const question = questions[currentQuestionIndex];
-}
-
-
 function startGame() {
     // Hide the lobby page
     document.getElementById("lobby-page").classList.add("hidden");
@@ -85,7 +80,7 @@ function startGame() {
     fetchQuestions().then(fetchedQuestions => {
         questions = fetchedQuestions;
         console.log(questions);
-        //showQuestion();
+        GameInit(questions);
     })
     .catch(error => {
         console.error("Error fetching questions:", error);
@@ -96,5 +91,8 @@ function startGame() {
 
 document.addEventListener("DOMContentLoaded", function() {
     populateCategories();
-    test();
 });
+
+window.setDifficulty = setDifficulty;
+window.setQuestionNumber = setQuestionNumber;
+window.startGame = startGame;
