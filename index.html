@@ -5,6 +5,7 @@
   <title>Trivia App</title>
   <link rel="stylesheet" href="./css/main.css">
   <script type="module" src="./js/animations.js"></script>
+  
 </head>
 <body>
 
@@ -90,11 +91,29 @@
 
   </div>
 
+  <div class="scoreboard-page hidden">
+  <div id="scoreboard" data-aos="fade-up">
+      <h2>Final Score</h2>
+      <ul id="score-list">
+        <li class="score-entry">
+          <img src="./assets/Default_pfp.svg" alt="Player Avatar" width="30px" height="30px">
+          <span class="rank">1</span>
+          <p class="score-name">You</p>
+          <p class="score-value">Score: 0</p>
+        </li>
+        <!-- More <li class="score-entry"> ... </li> for other players -->
+      </ul>
+      <button id="restart-btn" onclick="restart()">Play Again</button>
+    </div>
+  </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+  
+
+
+  
   <script type="module" src="./js/main.js"></script>
   <script type="module" src="./js/game.js"></script>
+
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-import { restartBarAnimation, endBarAnimation } from "./animations.js";
+import { restartBarAnimation, endBarAnimation, animateChoicesPopUp } from "./animations.js";
 
 const QUESTION_TIME = 15; // seconds
 let currentQuestionIndex = 0;
@@ -7,9 +7,24 @@ let score = 0;
 
 var quizPage = document.getElementById("quiz-page");
 var choiceList = document.querySelector(".choice-list");
+let scoreboard = document.querySelector(".scoreboard-page");
+
+var endSound = new Audio("../assets/done.mp3"); // buffers automatically when created
+endSound.volume = 0.2;
 
 function test() {
     console.log("This is a test function from game.js");
+}
+
+async function conditionalWait(conditionFunc, checkInterval = 100) {
+    return new Promise((resolve) => {
+        const interval = setInterval(() => {
+            if (conditionFunc()) {
+                clearInterval(interval);
+                resolve();
+            }
+        }, checkInterval);
+    });
 }
 
 async function wait(t) {
@@ -34,6 +49,10 @@ var Timer = {
         endBarAnimation();
         showAnswer(correctIndex);
     },
+}
+
+const QuestionAnswered = () => {
+    return Question.hasAnswered;
 }
 
 async function startTimer(timer, correctIndex) {
@@ -61,10 +80,10 @@ async function showAnswer(correctIndex) {
 }
 
 function onAnswerSelected(selectedIndex, correctIndex, Timer) {
-    console.log("correct answer:", correctIndex);
-
+    
     if (Question.hasAnswered) return;
-
+    
+    console.log("correct answer:", correctIndex);
     Question.hasAnswered = true;
 
     // Correct answer
@@ -82,6 +101,7 @@ function onAnswerSelected(selectedIndex, correctIndex, Timer) {
 function showQuestion(questionIndex) {
     
     restartBarAnimation();
+    animateChoicesPopUp();
 
     Question.hasAnswered = false;
 
@@ -133,7 +153,7 @@ async function GameInit(questionsArray) {
         startTimer(Timer, Question.correctIndex);
 
         // wait for the question time
-        await wait(QUESTION_TIME);
+        await conditionalWait(() => Timer.timeLeft <= 0 || QuestionAnswered());
         Timer.onEnd(Question.correctIndex);
 
         await wait(2);
@@ -151,11 +171,23 @@ choiceButtons.forEach((button) => {
 });
 
 function endGame() {
+    console.log("Game over! Final score:", score);
+    
     document.getElementById("quiz-page").classList.add("hidden");
-    document.getElementById("end-page").classList.remove("hidden");
-    document.getElementById("final-score").textContent = score;
+    scoreboard.classList.add("fade-in");
+
+    scoreboard.querySelector(".score-value").innerHTML = "Score: " + score;
+    scoreboard.classList.remove("hidden");
+
+    endSound.play();
 
     //const choiceButtons = choiceList.querySelectorAll(".choice");
 }
 
-export { test, GameInit };
+scoreboard.addEventListener('animationend', () => {
+  scoreboard.classList.remove('fade-in');
+});
+
+export { test, GameInit, endGame };
+
+window.endGame = endGame;

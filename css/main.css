@@ -17,6 +17,44 @@ body {
     width: 0%;
   }
 }
+@keyframes popUp {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+      transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes showWrong {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.7s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0;
+        transform: translateY(40px);
+  }
+  to   { opacity: 1;
+      transform: translateY(0px);
+  }
+}
 
 .enter-info {
   text-align: center;
@@ -232,13 +270,12 @@ button:hover {
   justify-content: center;
   text-align: center;
 
-  .wrong {
-    opacity: 0.3;
-  }
 
   .choice {
 
-    transform: scale(1);
+    transform: scale(0.2);
+    opacity: 0;
+
     box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s, box-shadow 0.2s;
     
@@ -247,6 +284,18 @@ button:hover {
       box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
       transition: transform 0.2s, box-shadow 0.2s;
     }
+
+    &.pop-up {
+  animation: popUp 0.6s cubic-bezier(.25,.8,.25,1) forwards;
+      animation-fill-mode: forwards;
+    }
+    
+    &.wrong {
+      animation: showWrong 0.4s ease-in-out forwards;
+      animation-fill-mode: forwards;
+    }
+    
+
   }
 
   #answer0 {
@@ -265,4 +314,70 @@ button:hover {
     background-color: #e56c38;
   }
 
+}
+
+#scoreboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+
+  h2 {
+    font-size: xxx-large;
+  }
+
+  button {
+    transform: scale(1);
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+  }
+}
+
+#score-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  margin-bottom: 4.5rem;
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.score-entry {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.07);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.score-entry img {
+  border-radius: 50%;
+}
+
+.rank {
+  font-size: 1.3rem;
+  font-weight: bold;
+  width: 2rem;
+  text-align: center;
+}
+
+.score-name {
+  flex: 1;
+  margin: 0;
+}
+
+.score-value {
+  font-weight: bold;
+  margin: 0;
 }

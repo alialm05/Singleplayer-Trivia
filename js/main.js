@@ -89,6 +89,22 @@ function startGame() {
 
 }
 
+function restart(){
+    document.querySelector(".scoreboard-page").classList.add("hidden");
+    document.getElementById("lobby-page").classList.remove("hidden");
+
+    // Reset selections
+    document.querySelectorAll('.topic-btn').forEach(btn => {
+        btn.classList.remove('selected');
+    });
+    document.querySelectorAll('.difficulty-btn').forEach(btn => {
+        btn.classList.remove('selected');
+    });
+    difficulty = "easy";
+    categoryId = 9;
+
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     populateCategories();
 });
@@ -96,3 +112,4 @@ document.addEventListener("DOMContentLoaded", function() {
 window.setDifficulty = setDifficulty;
 window.setQuestionNumber = setQuestionNumber;
 window.startGame = startGame;
+window.restart = restart;
