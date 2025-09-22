@@ -203,7 +203,7 @@ button:hover {
     width: 100%;
     background-color: #e57474;
     border-radius: 10px;
-    animation: shrinkBar 5s linear forwards;
+    animation: shrinkBar 15s linear forwards;
     }
   
   }
@@ -231,6 +231,10 @@ button:hover {
 
   justify-content: center;
   text-align: center;
+
+  .wrong {
+    opacity: 0.3;
+  }
 
   .choice {
 

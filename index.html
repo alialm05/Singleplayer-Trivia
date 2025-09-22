@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Trivia App</title>
   <link rel="stylesheet" href="./css/main.css">
+  <script type="module" src="./js/animations.js"></script>
 </head>
 <body>
 
@@ -16,7 +17,7 @@
   </div>
 
 
-  <div id="lobby-page" class="hidden">
+  <div id="lobby-page" class="">
 
     <div class="topics">
       
@@ -47,7 +48,7 @@
 
   </div>
 
-  <div id="quiz-page" class="">
+  <div id="quiz-page" class="hidden">
 
       <div class="users-holder">
         <div id="user0" class="user-info">
@@ -80,10 +81,10 @@
 
     <div id="answer-section">
       <div class="choice-list">
-          <button id="answer0" class="choice">Choice 1</button>
-          <button id="answer1" class="choice">Choice 2</button>
-          <button id="answer2" class="choice">Choice 3</button>
-          <button id="answer3" class="choice">Choice 4</button>
+          <button id="answer0" class="choice" value="0">Choice 1</button>
+          <button id="answer1" class="choice" value="1">Choice 2</button>
+          <button id="answer2" class="choice" value="2">Choice 3</button>
+          <button id="answer3" class="choice" value="3">Choice 4</button>
       </div>
     </div>
 
@@ -93,7 +94,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
   <script type="module" src="./js/main.js"></script>
-  <script src="./js/animations.js"></script>
   <script type="module" src="./js/game.js"></script>
 
 </body>
