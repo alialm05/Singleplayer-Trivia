@@ -142,8 +142,6 @@ async function GameInit(questionsArray) {
     currentQuestionIndex = 0;
     score = 0;
 
-    endSound.play();
-
     document.getElementById("quiz-page").classList.remove("hidden");
     
     for (let i = 0; i < questions.length; i++) {
