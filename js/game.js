@@ -9,7 +9,7 @@ var quizPage = document.getElementById("quiz-page");
 var choiceList = document.querySelector(".choice-list");
 let scoreboard = document.querySelector(".scoreboard-page");
 
-var endSound = new Audio("./assets/done.mp3"); // buffers automatically when created
+var endSound = new Audio("assets/done.mp3"); // buffers automatically when created
 endSound.volume = 0.2;
 
 function test() {
